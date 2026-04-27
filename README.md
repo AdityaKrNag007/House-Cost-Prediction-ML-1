@@ -1,14 +1,16 @@
 # House Price Prediction (Advanced)
 
 ## Objective
-Predict house prices using regression models.
+Predict house prices using regression models and improve performance through feature engineering and model comparison.
 
 ## Dataset
 Kaggle - House Prices: Advanced Regression Techniques
 
 ## Approach
-- Selected multiple relevant features (area, rooms, construction year, etc.)
-- Handled missing values using median
+- Selected multiple numerical features (area, rooms, garage, quality)
+- Handled missing values using median imputation
+- Performed feature engineering (HouseAge, TotalSF, TotalRooms)
+- Added high-impact features (OverallQual, GarageCars)
 - Split data into training and testing sets
 
 ## Models Used
@@ -16,16 +18,16 @@ Kaggle - House Prices: Advanced Regression Techniques
 - Random Forest Regressor
 
 ## Results
-- Linear Regression MAE: ~25874
-- Random Forest MAE: ~21489
-- Tuned Random Forest MAE: ~21265
+- Linear Regression MAE: ~23162
+- Random Forest MAE: ~18816
+- Tuned Random Forest MAE: ~18914
 
 ## Key Improvements
-- Compared linear vs non-linear models
-- Tuned hyperparameters (n_estimators, max_depth)
-- Observed impact of model complexity on performance
+- Feature engineering had the biggest impact on performance
+- Adding domain-relevant features significantly reduced error (~21k → ~18.8k)
+- Model tuning gave smaller gains compared to feature improvements
 
 ## Key Learnings
-- Linear models struggle with non-linear relationships
-- Random Forest captures complex patterns better
-- Feature quality has more impact than heavy tuning
+- Random Forest handles non-linear relationships better than Linear Regression
+- Not all feature engineering is useful — quality of features matters
+- Real performance gains come from better data representation, not just tuning

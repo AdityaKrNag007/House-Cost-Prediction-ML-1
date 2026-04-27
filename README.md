@@ -1,56 +1,75 @@
-# 🏠 House Price Prediction (ML Project)
+# House Price Prediction (Advanced ML Pipeline with Boosting)
 
-## 📌 Overview
+## Objective
+Predict house prices using advanced regression techniques and build a robust, well-evaluated ML pipeline.
 
-Built a machine learning model to predict house prices using regression techniques. Focus was on full ML workflow: preprocessing, feature engineering, model training, and evaluation.
-
----
-
-## 🧠 Models Used
-
-* Linear Regression
-* Decision Tree Regressor
-* Random Forest Regressor (final model)
+## Dataset
+Kaggle - House Prices: Advanced Regression Techniques
 
 ---
 
-## ⚙️ Workflow
+## Approach
 
-* Data cleaning & preprocessing
-* Feature engineering (e.g., `HouseAge`, `TotalSF`, `Qual_GrLiv`)
-* Train / Validation / Test split
-* Model training and tuning
+### Data Processing
+- Selected key numerical features (area, rooms, quality, garage)
+- Handled missing values using median imputation
 
----
-
-## 📊 Evaluation
-
-Metric: **Mean Absolute Error (MAE)**
-
-* Train MAE: ~183k
-* Validation MAE: ~179k
-* Test MAE: ~175k
-
----
-
-## 🔍 Key Learnings
-
-* Overfitting control using tree constraints
-* Importance of feature engineering over model tuning
-* Strong feature dominance (`OverallQual`)
-* Skewed target distribution affects regression performance
-* Log transformation improves stability
+### Feature Engineering
+- Created derived features:
+  - HouseAge = CurrentYear - YearBuilt
+  - TotalSF = 1stFlrSF + 2ndFlrSF
+  - TotalRooms = TotalRooms + Bedrooms
+- Added high-impact features:
+  - OverallQual
+  - GarageCars
+- Explored interaction feature:
+  - Qual_GrLiv = OverallQual × GrLivArea
 
 ---
 
-## 🚀 Future Improvements
+## Model Development
 
-* Try Gradient Boosting (XGBoost / LightGBM)
-* Improve extreme value prediction (luxury houses)
-* Advanced feature engineering
+### Models Used
+- Linear Regression
+- Random Forest Regressor
+- Gradient Boosting Regressor (final model)
+
+### Evaluation Strategy
+- Split data into:
+  - Train set → model training
+  - Validation set → tuning and model selection
+  - Test set → final unbiased evaluation
+- Metric used: Mean Absolute Error (MAE)
 
 ---
 
-## 🛠 Tech Stack
+## Results
 
-Python, Pandas, NumPy, Scikit-learn, Matplotlib
+| Model | Validation MAE | Test MAE |
+|------|---------------|----------|
+| Linear Regression | ~23.1k | ~23k |
+| Random Forest | ~19.6k | ~19.2k |
+| Gradient Boosting (default) | ~18.6k | ~19.3k |
+| Gradient Boosting (tuned) | **~18.7k** | **~18.9k** |
+
+---
+
+## Key Improvements
+- Reduced MAE from ~29k → ~18.9k through iterative improvements
+- Controlled overfitting using validation-based tuning
+- Improved generalization using lower learning rate in boosting
+- Identified performance plateau in Random Forest and overcame it using boosting
+
+---
+
+## Key Learnings
+- Feature engineering has the highest impact on model performance
+- Boosting models outperform bagging methods when tuned properly
+- Learning rate plays a critical role in controlling overfitting in boosting
+- Validation set is essential for reliable model improvement
+- Error analysis helps identify model limitations (e.g., regression-to-mean effect)
+
+---
+
+## Conclusion
+Built a robust ML pipeline with strong generalization performance, demonstrating the transition from basic modeling to advanced model optimization and evaluation.
